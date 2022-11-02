@@ -8,4 +8,7 @@ node {
       sh "${mvn} clean verify sonar:sonar -Dsonar.projectKey=Mvn-Test"
     }
   }
+    stage('MavenBuild') {
+      sh 'echo build'
+  }
 }
