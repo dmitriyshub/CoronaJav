@@ -66,5 +66,3 @@ Last updated: 09/2022
 
 URL: https://www.udemy.com/course/build-real-world-java-projects-using-spring-jsp-jdbc/
 
-
-
