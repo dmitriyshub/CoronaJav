@@ -8,7 +8,8 @@ node {
       sh "${mvn} clean verify sonar:sonar -Dsonar.projectKey=Mvn-Test"
     }
   }
-    stage('MavenBuild') {
-      sh 'echo build'
+  stage('MavenBuild') {
+      sh 'mvn package'
+      sh 'mvn deploy -DskipTests -Dmaven.install.skip=true'
   }
 }
