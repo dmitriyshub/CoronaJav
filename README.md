@@ -20,8 +20,3 @@ Spring Dependencies:
 - Spring Web
 - Thymeleaf 
 - Spring Boot Dev Tools
-
-
-
-
-
