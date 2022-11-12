@@ -11,7 +11,7 @@ pipeline {
         checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-SSH', url: 'git@github.com:dmitriyshub/CoronaJav.git']]])
       }
     }
-    stage('SonarQube Analysis') {
+    stage('SonarQube Verify Analysis') {
       steps {
         withSonarQubeEnv('SonarQubeMvn') {
           sh "/usr/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Mvn-Test"
@@ -29,9 +29,11 @@ pipeline {
         sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
       }
     }
-    stage('SonarQube Build') {
+    stage('SonarQube Package Analysis') {
       steps {
-        sh 'echo'
+        withSonarQubeEnv('SonarQubeMvn') {
+          sh "/usr/bin/mvn clean package sonar:sonar"
+        }
       }
     }
     stage('Clean WorkSpace') {
