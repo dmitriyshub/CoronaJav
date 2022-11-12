@@ -80,7 +80,7 @@ pipeline {
           sh '''
           docker login -u $USER -p $PASSWD http://localhost:8082
           docker pull localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
-          docker run -d --restart=always localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
+          docker run -d --restart=always -p 8181:8181 localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
           '''
         }
       }
