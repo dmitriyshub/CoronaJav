@@ -66,8 +66,8 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'Nexus', passwordVariable: 'PASSWD', usernameVariable: 'USER')]) {
           sh '''
           docker login -u $USER -p $PASSWD http://localhost:8082
-          docker tag $IMAGE_NAME:$IMAGE_TAG localhost:8082/CoronaJavDockerRepo/$IMAGE_NAME:$IMAGE_TAG
-          docker push localhost:8082/CoronaJavDockerRepo/$IMAGE_NAME:$IMAGE_TAG
+          docker tag $IMAGE_NAME:$IMAGE_TAG localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
+          docker push localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
           '''
         }
       }
