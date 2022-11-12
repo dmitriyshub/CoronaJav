@@ -74,6 +74,16 @@ pipeline {
       }
     }
 
+        stage('Docker Pull') {
+      steps {
+        sh '''
+        docker login -u $USER -p $PASSWD http://localhost:8082
+        docker pull localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
+        docker run localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
+        '''
+      }
+    }
+
     stage('Clean WorkSpace') {
       steps {
         cleanWs()
