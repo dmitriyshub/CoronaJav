@@ -1,9 +1,11 @@
-node {
+pipeline {
+    agent any
+
   environment {
       IMAGE_TAG = "0.0.$BUILD_NUMBER"
       IMAGE_NAME = "Corona_Jar"
   }
-
+  stages {
   stage('CheckoutSCM') {
     checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-SSH', url: 'git@github.com:dmitriyshub/CoronaJav.git']]])
   }
@@ -29,4 +31,5 @@ node {
   //stage('MavenDeploy') {
   //    sh 'java -jar target/covid-tracker-application-0.0.1-SNAPSHOT.jar --server.port=8181'
   //}
+}
 }
