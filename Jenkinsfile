@@ -67,7 +67,7 @@ pipeline {
           sh '''
           docker login -u $USER -p $PASSWD http://localhost:8082
           docker tag $IMAGE_NAME:$IMAGE_TAG http://localhost:8082/repository/CoronaJavDockerRepo/$IMAGE_NAME:$IMAGE_TAG
-          docker push http://localhost:8181/repository/CoronaJavDockerRepo/$IMAGE_NAME:$IMAGE_TAG
+          docker push http://localhost:8082/repository/CoronaJavDockerRepo/$IMAGE_NAME:$IMAGE_TAG
           '''
         }
       }
