@@ -4,7 +4,7 @@ node {
       IMAGE_NAME = "Corona_Jar"
   }
 
-  stage('SCM') {
+  stage('CheckoutSCM') {
     checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-SSH', url: 'git@github.com:dmitriyshub/CoronaJav.git']]])
   }
   stage('SonarQube Analysis') {
@@ -13,15 +13,15 @@ node {
       sh "${mvn} clean verify sonar:sonar -Dsonar.projectKey=Mvn-Test"
     }
   }
-  stage('MavenBuild') {
+  stage('Maven Build') {
       sh 'mvn package'
       //sh 'mvn deploy -DskipTests -Dmaven.install.skip=true'
   }
-  stage('DockerBuild') {
-      sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG'
+  stage('Docker Build') {
+      sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
       cleanWs()
   }
-  stage('CleanWorkSpace') {
+  stage('Clean WorkSpace') {
       cleanWs()
   }
   //stage('MavenDeploy') {
