@@ -19,7 +19,9 @@ node {
   }
   stage('Docker Build') {
       sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
-      cleanWs()
+  }
+  stage('SonarQube Build') {
+      sh 'echo'
   }
   stage('Clean WorkSpace') {
       cleanWs()
