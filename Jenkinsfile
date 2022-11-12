@@ -1,6 +1,6 @@
 node {
   stage('SCM') {
-    checkout scm
+    checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub-SSH', url: 'git@github.com:dmitriyshub/CoronaJav.git']]])
   }
   stage('SonarQube Analysis') {
     def mvn = tool 'MyMaven';
