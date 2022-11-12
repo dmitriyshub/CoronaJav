@@ -48,10 +48,10 @@ pipeline {
           [
            artifactId: 'covid-tracker-application',
            classifier: '',
-           file: 'target/covid-tracker-application-0.0.1-SNAPSHOT.jar'
+           file: 'target/covid-tracker-application-0.0.1-SNAPSHOT.jar',
            type: 'jar'
           ]
-        ],
+      ],
             credentialsId: 'Nexus',
             groupId: 'com.application',
             nexusUrl: 'http://localhost:8081',
@@ -59,7 +59,7 @@ pipeline {
             protocol: 'http', 
             repository: 'maven-releases', 
             version: '0.0.1'
-      }
+          }
     }
 
     stage('Clean WorkSpace') {
