@@ -10,7 +10,7 @@ node {
   }
   stage('MavenBuild') {
       sh 'mvn package'
-      sh 'mvn deploy -DskipTests -Dmaven.install.skip=true'
+      //sh 'mvn deploy -DskipTests -Dmaven.install.skip=true'
       cleanWs()
   }
   //stage('MavenDeploy') {
