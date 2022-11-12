@@ -3,7 +3,7 @@ pipeline {
 
   environment {
       IMAGE_TAG = "0.0.$BUILD_NUMBER"
-      IMAGE_NAME = "Corona_Jar"
+      IMAGE_NAME = "corona_jar"
   }
   stages {
     stage('CheckoutSCM') {
