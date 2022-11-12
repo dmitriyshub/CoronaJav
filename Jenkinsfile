@@ -74,13 +74,15 @@ pipeline {
       }
     }
 
-        stage('Docker Pull') {
+    stage('Docker Pull from Nexus') {
       steps {
-        sh '''
-        docker login -u $USER -p $PASSWD http://localhost:8082
-        docker pull localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
-        docker run localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
-        '''
+        withCredentials([usernamePassword(credentialsId: 'Nexus', passwordVariable: 'PASSWD', usernameVariable: 'USER')]) {
+          sh '''
+          docker login -u $USER -p $PASSWD http://localhost:8082
+          docker pull localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
+          docker run localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
+          '''
+        }
       }
     }
 
