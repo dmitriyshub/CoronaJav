@@ -75,6 +75,7 @@ pipeline {
 
     stage('Clean WorkSpace') {
       steps {
+        sh 'docker rmi $IMAGE_NAME:$IMAGE_TAG'
         cleanWs()
       }
     }
