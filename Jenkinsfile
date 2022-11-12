@@ -68,6 +68,7 @@ pipeline {
           docker login -u $USER -p $PASSWD http://localhost:8082
           docker tag $IMAGE_NAME:$IMAGE_TAG localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
           docker push localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
+          docker rmi localhost:8082/coronajavdockerrepo/$IMAGE_NAME:$IMAGE_TAG
           '''
         }
       }
@@ -75,7 +76,6 @@ pipeline {
 
     stage('Clean WorkSpace') {
       steps {
-        sh 'docker rmi $IMAGE_NAME:$IMAGE_TAG'
         cleanWs()
       }
     }
